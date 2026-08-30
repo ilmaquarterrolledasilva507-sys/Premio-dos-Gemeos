@@ -1,1 +1,403 @@
-  
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prêmio dos Gêmeos</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f3f6;
+      color: #222;
+    }
+
+    header {
+      background: #356df3;
+      color: white;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 8px #999;
+    }
+
+    .topo {
+      max-width: 650px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .logo span {
+      color: #ffd21c;
+    }
+
+    .carrinho {
+      font-size: 25px;
+    }
+
+    main {
+      max-width: 650px;
+      margin: auto;
+      padding: 12px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      margin-bottom: 14px;
+      padding: 18px;
+      box-shadow: 0 2px 8px #d0d0d0;
+    }
+
+    .premio {
+      background: linear-gradient(135deg, #111827, #243451);
+      color: white;
+      padding: 25px 20px;
+    }
+
+    .premio h1 {
+      font-size: 31px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .premio h1 span {
+      color: #ffd21c;
+    }
+
+    .premio p {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .opcoes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .opcao {
+      border: 2px solid #e0e4eb;
+      background: #f8f9fb;
+      padding: 17px 8px;
+      border-radius: 13px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .opcao:hover,
+    .opcao.ativo {
+      background: #356df3;
+      color: white;
+      border-color: #356df3;
+    }
+
+    .contador {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 25px;
+      margin: 22px 0;
+    }
+
+    .contador button {
+      width: 55px;
+      height: 55px;
+      border: 0;
+      border-radius: 14px;
+      background: #356df3;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    #quantidade {
+      font-size: 21px;
+      font-weight: bold;
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .total {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .total span {
+      color: #16a765;
+    }
+
+    label {
+      display: block;
+      font-size: 17px;
+      font-weight: bold;
+      margin: 13px 0 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ccd2dc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    .pix {
+      background: #f8fbff;
+      border: 2px solid #dbe7ff;
+    }
+
+    .chave {
+      background: #fff;
+      border: 1px dashed #356df3;
+      padding: 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+      word-break: break-all;
+      font-weight: bold;
+    }
+
+    .botao {
+      width: 100%;
+      border: 0;
+      background: #18c978;
+      color: white;
+      padding: 17px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+    }
+
+    .botao:active {
+      transform: scale(.98);
+    }
+
+    .aviso {
+      margin-top: 12px;
+      color: #666;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    #mensagem {
+      display: none;
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #e9fff3;
+      color: #08763d;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="topo">
+    <div>☰</div>
+
+    <div class="logo">
+      PRÊMIO DOS <span>GÊMEOS</span>
+    </div>
+
+    <div class="carrinho">🛒</div>
+  </div>
+</header>
+
+<main>
+
+  <section class="card premio">
+    <h1>
+      PRÊMIO DOS<br>
+      <span>GÊMEOS</span>
+    </h1>
+
+    <p>🚙 Toyota SW4 + R$ 2.000.000</p>
+  </section>
+
+  <section class="card">
+    <h2>🎟️ Escolha suas combinações</h2>
+
+    <div class="opcoes">
+      <button class="opcao" onclick="selecionar(5)">5 · R$ 5</button>
+      <button class="opcao" onclick="selecionar(10)">10 · R$ 10</button>
+      <button class="opcao" onclick="selecionar(25)">25 · R$ 25</button>
+      <button class="opcao" onclick="selecionar(50)">50 · R$ 50</button>
+    </div>
+
+    <div class="contador">
+      <button onclick="diminuir()">−</button>
+
+      <div id="quantidade">5 combinações</div>
+
+      <button onclick="aumentar()">+</button>
+    </div>
+
+    <div class="total">
+      Total: <span id="total">R$ 5,00</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>👤 Cadastro</h2>
+
+    <label>Nome</label>
+    <input id="nome" type="text" placeholder="Digite seu nome">
+
+    <label>CPF</label>
+    <input id="cpf" type="text" placeholder="Digite seu CPF">
+
+    <label>WhatsApp</label>
+    <input id="whatsapp" type="tel" placeholder="Digite seu WhatsApp">
+
+    <p class="aviso">
+      O WhatsApp informado receberá as informações do pedido após a confirmação.
+    </p>
+  </section>
+
+  <section class="card pix">
+    <h2>💠 Pix manual</h2>
+
+    <p><strong>Chave Pix:</strong></p>
+
+    <div class="chave" id="chavePix">
+      SUA_CHAVE_PIX_AQUI
+    </div>
+
+    <button class="botao" onclick="copiarPix()">
+      📋 Copiar chave Pix
+    </button>
+
+    <button class="botao" onclick="registrarPedido()">
+      ✅ Registrar pedido
+    </button>
+
+    <div id="mensagem"></div>
+  </section>
+
+</main>
+
+<script>
+
+  let quantidade = 5;
+  const valorPorCombinacao = 1;
+
+  function atualizar() {
+
+    document.getElementById("quantidade").innerText =
+      quantidade + " combinações";
+
+    const total = quantidade * valorPorCombinacao;
+
+    document.getElementById("total").innerText =
+      "R$ " + total.toFixed(2).replace(".", ",");
+
+  }
+
+  function aumentar() {
+
+    quantidade += 5;
+
+    atualizar();
+  }
+
+  function diminuir() {
+
+    if (quantidade > 5) {
+      quantidade -= 5;
+    }
+
+    atualizar();
+  }
+
+  function selecionar(valor) {
+
+    quantidade = valor;
+
+    atualizar();
+
+    document.querySelectorAll(".opcao").forEach(botao => {
+      botao.classList.remove("ativo");
+    });
+
+    event.target.classList.add("ativo");
+  }
+
+  function copiarPix() {
+
+    const chave =
+      document.getElementById("chavePix").innerText.trim();
+
+    navigator.clipboard.writeText(chave).then(() => {
+
+      alert("Chave Pix copiada!");
+
+    });
+
+  }
+
+  function registrarPedido() {
+
+    const nome =
+      document.getElementById("nome").value.trim();
+
+    const cpf =
+      document.getElementById("cpf").value.trim();
+
+    const whatsapp =
+      document.getElementById("whatsapp").value.trim();
+
+    if (!nome || !cpf || !whatsapp) {
+
+      alert("Preencha nome, CPF e WhatsApp.");
+
+      return;
+    }
+
+    const total =
+      quantidade * valorPorCombinacao;
+
+    const mensagem =
+      document.getElementById("mensagem");
+
+    mensagem.style.display = "block";
+
+    mensagem.innerHTML =
+      "Pedido registrado!<br><br>" +
+      "Quantidade: " + quantidade + " combinações<br>" +
+      "Total: R$ " + total.toFixed(2).replace(".", ",") +
+      "<br><br>" +
+      "Agora faça o pagamento através da chave Pix acima.";
+
+  }
+
+  atualizar();
+
+</script>
+
+</body>
+</html>
